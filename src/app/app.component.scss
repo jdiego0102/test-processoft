@@ -1,5 +1,65 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+* {
+  box-sizing: border-box;
+}
+
+.div-form {
+  border-radius: 1rem;
+  position: absolute;
+  right: 0;
+  margin: 30px;
+  max-width: 400px;
+  padding: 16px;
+  background-color: #f7f7f7;
+  align-content: center;
+  margin-top: 50px;
+}
+
+/* Full-width input fields */
+
+/* Set a style for the submit button */
+.btn {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  width: 40%;
+  border-radius: 2rem;
+  margin-top: 10px;
+  padding: 1%;
+}
+
+.form-inputs {
+  //   padding: 5%;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 15px;
+}
+
+.form-rounded {
+  border-radius: 1rem;
+  margin-top: 2%;
+}
+
+.text-title {
+  font-weight: bold;
+  font-size: 35px;
+  letter-spacing: 1px;
+}
+
+.text-label {
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
+}
+
+.text-politics {
+  font-size: x-small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: gray;
+  margin-left: 5px;
+}
+
+.text-link {
+  font-size: x-small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
 }

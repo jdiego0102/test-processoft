@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+html,
+body {
+  background: url("./assets/img/ssangyong_rexton_sport_2019.jpg") no-repeat
+    center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
