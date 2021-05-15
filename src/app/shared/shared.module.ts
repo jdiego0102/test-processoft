@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
+import { MatModule } from '../mat/mat.module';
+import { DialogMsgComponent } from './components/dialog-msg/dialog-msg.component';
 
 
 
 @NgModule({
   declarations: [
-    AlertDialogComponent
+    DialogMsgComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    MatModule
+  ],
+  exports: []
 })
 export class SharedModule { }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CarModel } from 'src/app/models/carModels.interface';
@@ -7,6 +8,8 @@ import { City, CityResponse, Department, DepartmentResponse } from 'src/app/mode
 import { QuotationResponse } from 'src/app/models/quotation.interface';
 import { LocationsService } from 'src/app/services/locations/locations.service';
 import { QuotationService } from 'src/app/services/quotation/quotation.service';
+import { DialogMsgComponent } from 'src/app/shared/components/dialog-msg/dialog-msg.component';
+// import { AlertDialogComponent } from 'src/app/shared/components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-quotation',
@@ -37,13 +40,13 @@ export class QuotationComponent implements OnInit, OnDestroy {
   // Array ciudades
   cities: City[] = [];
 
-  private isValidEmail = /\S+@\S+\.\S+/;
   numberRegEx = /\-?\d*\.?\d{1,2}/;
 
 
   constructor(private fb: FormBuilder,
     private quotationService: QuotationService,
-    private locationService: LocationsService) {
+    private locationService: LocationsService,
+    private dialog: MatDialog,) {
 
     this.departmentSelect = {
       'department_id': 1,
@@ -165,13 +168,24 @@ export class QuotationComponent implements OnInit, OnDestroy {
           .saveQuotation(this.quotationForm.value)
           .subscribe((res: QuotationResponse) => {
             if (res) {
-              if (res.status == 'success') {
+
                 // Mostrar notificación
                 this.loadingSubmitted = false;
                 this.quotationForm.reset();
-              } else {
-                this.loadingSubmitted = false;
-              }
+
+                const dialog = this.dialog.open(DialogMsgComponent, {
+                  data: {
+                    data: res,
+                  },
+                });
+            
+                // Recibir respuesta al evento de cerrar diálogo
+                dialog.afterClosed().subscribe((infoTecpDialog) => {
+                  if (infoTecpDialog == true || infoTecpDialog == undefined) {
+                    
+                  }
+                });
+
             }
           }, (error) => {
             console.log(error);

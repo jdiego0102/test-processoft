@@ -1,0 +1,26 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+
+<div *ngIf="data.status == 'success'">
+    <h2  class="text-title" mat-dialog-title>{{ data.msg }}</h2>
+    <mat-dialog-content class="mat-typography">
+        <span class="text-msg">para SsamYong tu eres lo más  importante y pronto nos pondremos en contacto contigo.</span>
+    </mat-dialog-content>
+    <br>
+    <h1 class="text-title">CONOCE MAS DE TU FUTURA CAMIONETA</h1>
+
+    <iframe width="560" height="315" [src]="getVideoIframe('https://www.youtube.com/watch?v=e98HlHG5Djg')" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+<div *ngIf="data.status != 'success'">
+    <h2  class="text-title" mat-dialog-title>{{ data.msg }}</h2>
+    <mat-dialog-content class="mat-typography">
+        <span class="text-msg">para SsamYong tu eres lo más  importante y pronto nos pondremos en contacto contigo.</span>
+    </mat-dialog-content>
+    <br>
+    <h1 class="text-title">CONOCE MAS DE TU FUTURA CAMIONETA</h1>
+
+    <iframe width="560" height="315" [src]="getVideoIframe('https://www.youtube.com/watch?v=e98HlHG5Djg')" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
