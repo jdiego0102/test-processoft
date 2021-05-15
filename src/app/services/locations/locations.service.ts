@@ -14,7 +14,7 @@ export class LocationsService {
   constructor(private http: HttpClient, private router: Router) { }
 
   // Obtener departamentos
-  getDepartments(): Observable<DepartmentResponse | void> {
+  getDepartments(): Observable<DepartmentResponse | any> {
     return this.http
       .get<DepartmentResponse>(`${environment.API_URL}departments/list`, {})
       .pipe(
@@ -27,7 +27,7 @@ export class LocationsService {
   }
 
   // Obtener ciudades por departamento
-  getCities(departmentId: number): Observable<CityResponse | void> {
+  getCities(departmentId: number): Observable<CityResponse | any> {
     return this.http
       .get<CityResponse>(
         `${environment.API_URL}cities/list/${departmentId}`,

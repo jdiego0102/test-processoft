@@ -18,13 +18,25 @@ export class QuotationService {
   // Realizar petición al servidor para guardar almacenar predio
   savePredio(quotation: Quotation): Observable<QuotationResponse | void> {
 
-
     return this.http
       .post<QuotationResponse>(`${environment.API_URL}quotation/create`, quotation, {
         headers: this.headers,
       })
       .pipe(
         map((res: QuotationResponse) => {
+          return res;
+        }),
+        // Capturar error
+        catchError((err) => this.handlerError(err))
+      );
+  }
+
+  // Obtener modelos de carros
+  getcarModels(): Observable<[] | any> {
+    return this.http
+      .get<[]>(`https://integrador.processoft.com.co/api/menutest`, {})
+      .pipe(
+        map((res: []) => {
           return res;
         }),
         // Capturar error

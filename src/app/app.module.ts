@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuotationModule } from './modules/quotation/quotation.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { QuotationModule } from './modules/quotation/quotation.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    QuotationModule
+    QuotationModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
