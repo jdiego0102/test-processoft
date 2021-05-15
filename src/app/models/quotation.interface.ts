@@ -5,6 +5,7 @@ export interface Quotation {
     email: number;
     cellphone_number: string;
     car_model: string;
+    data_policy: boolean;
 }
 
 export interface QuotationResponse {

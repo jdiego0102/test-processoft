@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CarModel } from 'src/app/models/carModels.interface';
 import { City, CityResponse, Department, DepartmentResponse } from 'src/app/models/locations.interface';
+import { QuotationResponse } from 'src/app/models/quotation.interface';
 import { LocationsService } from 'src/app/services/locations/locations.service';
 import { QuotationService } from 'src/app/services/quotation/quotation.service';
 
@@ -23,6 +24,7 @@ export class QuotationComponent implements OnInit, OnDestroy {
   showLoadingModels = false;
   showLoadingDepartments = false;
   showLoadingCities = false;
+  loadingSubmitted = false;
 
   carModels: CarModel[] = [];
   // Array departamento
@@ -34,6 +36,9 @@ export class QuotationComponent implements OnInit, OnDestroy {
 
   // Array ciudades
   cities: City[] = [];
+
+  private isValidEmail = /\S+@\S+\.\S+/;
+  numberRegEx = /\-?\d*\.?\d{1,2}/;
 
 
   constructor(private fb: FormBuilder,
@@ -50,6 +55,10 @@ export class QuotationComponent implements OnInit, OnDestroy {
       car_model: ['', [Validators.required]],
       department_id: ['', [Validators.required]],
       city_id: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      cellphone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.numberRegEx)]],
+      data_policy: ['', [Validators.required]],
     });
 
   }
@@ -144,7 +153,36 @@ export class QuotationComponent implements OnInit, OnDestroy {
     );
   }
 
+  // Guardar cotizacion
   onSaveQuotation() {
+    this.loadingSubmitted = true;
+    // Validar datos correctos
+    if (this.quotationForm.valid) {
 
+      this.subscription.add(
+        // Obtener petición realizada por el servicio
+        this.quotationService
+          .saveQuotation(this.quotationForm.value)
+          .subscribe((res: QuotationResponse) => {
+            if (res) {
+              if (res.status == 'success') {
+                // Mostrar notificación
+                this.loadingSubmitted = false;
+                this.quotationForm.reset();
+              } else {
+                this.loadingSubmitted = false;
+              }
+            }
+          }, (error) => {
+            console.log(error);
+            this.loadingSubmitted = false;
+          })
+      );
+    }
+  }
+
+  // Obtener control del formulario
+  get quotationFormControl() {
+    return this.quotationForm.controls;
   }
 }

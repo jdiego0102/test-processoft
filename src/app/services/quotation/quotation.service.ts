@@ -16,7 +16,7 @@ export class QuotationService {
   constructor(private http: HttpClient) { }
 
   // Realizar petición al servidor para guardar almacenar predio
-  savePredio(quotation: Quotation): Observable<QuotationResponse | void> {
+  saveQuotation(quotation: Quotation): Observable<QuotationResponse | any> {
 
     return this.http
       .post<QuotationResponse>(`${environment.API_URL}quotation/create`, quotation, {
